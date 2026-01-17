@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Public Preference | Market Insights</title>
+    
+    <style>
+        :root { --brand: #2563eb; --bg: #f8fafc; --text: #0f172a; }
+        body { font-family: -apple-system, system-ui, sans-serif; background: var(--bg); color: var(--text); margin: 0; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
+        header { width: 100%; padding: 2rem 0; text-align: center; background: white; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .logo { font-weight: 800; font-size: 1.5rem; letter-spacing: -0.05em; color: var(--brand); text-transform: uppercase; }
+        .container { max-width: 600px; width: 90%; margin: 2rem 0; text-align: center; }
+        h1 { font-size: 1.25rem; margin-bottom: 1.5rem; font-weight: 600; }
+        
+        /* The Image Grid */
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem; }
+        .option-card { background: white; padding: 0.5rem; border-radius: 1rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); cursor: pointer; transition: transform 0.2s; border: 2px solid transparent; }
+        .option-card:hover { transform: translateY(-4px); border-color: var(--brand); }
+        .option-card img { width: 100%; border-radius: 0.5rem; aspect-ratio: 3/4; object-fit: cover; }
+        
+        button { margin-top: 2rem; background: var(--brand); color: white; border: none; padding: 1rem 2rem; border-radius: 0.5rem; font-weight: 600; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">Public Preference</div>
+    </header>
+
+    <div class="container">
+        <h1>Which style fits the brand best?</h1>
+        <p>Select the image that conveys the highest quality.</p>
+        
+        <div class="grid" id="voting-grid">
+            <div class="option-card" onclick="castVote('A')">
+                <img src="https://via.placeholder.com/300x400?text=Option+A" alt="Option A">
+                <p>Option A</p>
+            </div>
+            <div class="option-card" onclick="castVote('B')">
+                <img src="https://via.placeholder.com/300x400?text=Option+B" alt="Option B">
+                <p>Option B</p>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        // Your specific Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDwtonVIyUTd9uf_DmTvsXLe8Azkrk0Gx8",
+            authDomain: "publicpreference-5856f.firebaseapp.com",
+            projectId: "publicpreference-5856f",
+            storageBucket: "publicpreference-5856f.firebasestorage.app",
+            messagingSenderId: "569420096911",
+            appId: "1:569420096911:web:0f7484bd91fd4a87c297fa"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // Simple Voting Function
+        window.castVote = async (choice) => {
+            console.log("Voted for:", choice);
+            alert("Thank you for your preference!");
+            // Later, we will add code here to save this vote to your 'db'
+        };
+    </script>
+</body>
+</html>
